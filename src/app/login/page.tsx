@@ -11,7 +11,7 @@ export default function LoginPage() {
               className="w-8 h-8 mr-2"
               src="/img/SFAC_LOGO_Edited.png"
               alt="SFAC Logo"
-            ></img>
+            />
             Admin Login
           </a>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
