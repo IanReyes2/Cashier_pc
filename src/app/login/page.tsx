@@ -19,11 +19,14 @@ export default function LoginPage() {
         body: JSON.stringify({ username, password }),
       });
 
-      if (res.ok) {
-        // ✅ Login successful → redirect to cashier UI
-        router.push("/cashier");
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        // ✅ Login successful → save session info and redirect
+        localStorage.setItem("loggedIn", "true");
+        localStorage.setItem("userName", data.user.name);
+        router.push("/cashier"); // redirect to Cashier UI
       } else {
-        const data = await res.json();
         setError(data.error || "Login failed");
       }
     } catch (err) {
@@ -86,9 +89,7 @@ export default function LoginPage() {
                   />
                 </div>
 
-                {error && (
-                  <p className="text-red-600 text-sm">{error}</p>
-                )}
+                {error && <p className="text-red-600 text-sm">{error}</p>}
 
                 <button
                   type="submit"
